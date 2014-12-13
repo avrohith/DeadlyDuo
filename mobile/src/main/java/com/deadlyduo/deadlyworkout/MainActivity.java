@@ -59,6 +59,7 @@ public class MainActivity extends ActionBarActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences(PREF,MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(PHONE_KEY, phoneNumber);
+                    editor.commit();
                 }
 
             }

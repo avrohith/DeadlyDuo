@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Send SMS"
+        android:text="SAVE"
         android:layout_below="@+id/option_spinner"/>
 
 </RelativeLayout>
