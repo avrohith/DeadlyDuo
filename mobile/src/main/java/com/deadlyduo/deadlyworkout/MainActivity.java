@@ -1,5 +1,6 @@
 package com.deadlyduo.deadlyworkout;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
@@ -19,6 +20,8 @@ public class MainActivity extends ActionBarActivity {
     Spinner spinner;
     Button button;
     EditText editText;
+    public static final String PREF = "saved";
+    public static final String PHONE_KEY = "phoneNumber";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setSelection(0);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -47,14 +51,15 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String phoneNumber = editText.getText().toString();
                 if(phoneNumber.equals("")){
-                    Toast.makeText(getBaseContext(), "No phone number",Toast.LENGTH_LONG).show();
-                    return;
+                    Toast.makeText(getBaseContext(), "Provide a phone number",Toast.LENGTH_LONG).show();
+                }else {
+                    SharedPreferences sharedPreferences = getSharedPreferences(PREF,MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(PHONE_KEY, phoneNumber);
                 }
-
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNumber, null, "Hello", null, null);
 
             }
         });

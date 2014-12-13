@@ -1,6 +1,8 @@
 package com.deadlyduo.deadlyworkout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.telephony.SmsManager;
 import android.util.Log;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -20,7 +22,8 @@ public class WearService extends WearableListenerService {
         super.onMessageReceived(messageEvent);
 
         Log.i(TAG, "Message received!");
-
-        // Here we check out location with gps
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREF, MODE_PRIVATE);
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage(sharedPreferences.getString(MainActivity.PHONE_KEY, null), null, "Help me please!!", null, null);
     }
 }
