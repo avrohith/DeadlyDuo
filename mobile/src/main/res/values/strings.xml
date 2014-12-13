@@ -4,5 +4,9 @@
     <string name="app_name">Deadly Workout</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string-array name="options">
+        <item>Send Location</item>
+        <item>Send Text</item>
+    </string-array>
 
 </resources>
