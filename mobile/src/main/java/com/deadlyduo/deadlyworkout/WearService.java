@@ -23,7 +23,14 @@ public class WearService extends WearableListenerService {
 
         Log.i(TAG, "Message received!");
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREF, MODE_PRIVATE);
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(sharedPreferences.getString(MainActivity.PHONE_KEY, null), null, "Help me please!!", null, null);
+        int option = sharedPreferences.getInt(MainActivity.OPTION_KEY, 0);
+
+        if (option == 0){
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(sharedPreferences.getString(MainActivity.PHONE_KEY, null), null, "Help me please!!", null, null);
+        }else if (option == 1){
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(sharedPreferences.getString(MainActivity.PHONE_KEY, null), null, "Help me please!! My Location is 42.363775, -71.087243", null, null);
+        }
     }
 }

@@ -22,6 +22,8 @@ public class MainActivity extends ActionBarActivity {
     EditText editText;
     public static final String PREF = "saved";
     public static final String PHONE_KEY = "phoneNumber";
+    public static final String OPTION_KEY = "helpOption";
+    private int itemSelected = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +35,11 @@ public class MainActivity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(0);
+        itemSelected = 0;
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                itemSelected = position;
             }
 
             @Override
@@ -59,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences(PREF,MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(PHONE_KEY, phoneNumber);
+                    editor.putInt(OPTION_KEY, itemSelected);
                     editor.commit();
                 }
 
