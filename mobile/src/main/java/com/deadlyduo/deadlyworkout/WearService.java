@@ -25,10 +25,10 @@ public class WearService extends WearableListenerService {
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREF, MODE_PRIVATE);
         int option = sharedPreferences.getInt(MainActivity.OPTION_KEY, 0);
 
-        if (option == 0){
+        if (option == 1){
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(sharedPreferences.getString(MainActivity.PHONE_KEY, null), null, "Help me please!!", null, null);
-        }else if (option == 1){
+        }else if (option == 0){
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(sharedPreferences.getString(MainActivity.PHONE_KEY, null), null, "Help me please!! My Location is 42.363775, -71.087243", null, null);
         }
